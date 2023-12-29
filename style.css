@@ -1,0 +1,17 @@
+.FightArea{
+    display: flex;
+    gap: 20px;
+}
+#Character,#Monster{
+    flex: 1;
+}
+.LifeBar{
+    height: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+.LifeBar,.Bar{
+    height: inherit;
+    background-color: red;
+    border-radius: 5px;
+}
