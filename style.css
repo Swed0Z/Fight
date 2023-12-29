@@ -1,17 +1,25 @@
-.FightArea{
+.FightArea {
     display: flex;
     gap: 20px;
 }
-#Character,#Monster{
+
+#Character, #Monster {
     flex: 1;
 }
-.LifeBar{
+
+.LifeBar {
     height: 10px;
     border: 1px solid #333;
     border-radius: 5px;
 }
-.LifeBar,.Bar{
+
+.LifeBar > .Bar {
     height: inherit;
     background-color: red;
     border-radius: 5px;
+}
+.Log{
+    border: 1px dotted #999;
+    height: 200px;
+    overflow-y: scroll;
 }
