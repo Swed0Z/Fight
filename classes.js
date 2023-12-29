@@ -26,9 +26,27 @@ class Knight extends Character{
 class Mage extends Character{
     constructor(name){
         super(name)
-        this.life = 50
+        this.life = 60
         this.attack = 25
         this.defense = 5
         this.maxlife = this.life
     }
+}
+class LittleMonster extends Character{
+    constructor(){
+    super('Little Monster')
+    this.life = 30
+    this.attack = 5
+    this.defense = 2
+    this.maxlife = this.life
+}
+}
+class BigMonster extends Character{
+    constructor(){
+    super('Big Monster')
+    this.life = 120
+    this.attack = 15
+    this.defense = 1
+    this.maxlife = this.life
+}
 }
