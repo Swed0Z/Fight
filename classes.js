@@ -70,16 +70,32 @@ class Stage {
     update() {
 
         let f1PCT = (this.Fighter1.life / this.Fighter1.maxLife) * 100
-        this.FighterEL1.querySelector('.name').innerHTML = `${this.Fighter1.name} - ${this.Fighter1.life}HP`
+        this.FighterEL1.querySelector('.name').innerHTML = `${this.Fighter1.name} - ${this.Fighter1.life.toFixed(1)}HP`
         this.FighterEL1.querySelector('.Bar').style.width = `${f1PCT}%`
 
         let f2PCT = (this.Fighter2.life / this.Fighter2.maxLife) * 100
-        this.FighterEL2.querySelector('.name').innerHTML = `${this.Fighter2.name} - ${this.Fighter2.life}HP`
+        this.FighterEL2.querySelector('.name').innerHTML = `${this.Fighter2.name} - ${this.Fighter2.life.toFixed(1)}HP`
         this.FighterEL2.querySelector('.Bar').style.width = `${f2PCT}%`
         
     }
     doAttack(attacking, attacked){
-        console.log(`${attacking.name} está atacando ${attacked.name}`)
+       if(attacking.life <= 0 || attacked.life <= 0){
+            console.log('alguém ta morto')
+            return
+       }
+       let attackFactor = (Math.random() * 2).toFixed(2)
+       let defenseFactor = (Math.random() * 2).toFixed(2)
+
+       let actualAttack = attacking.attack * attackFactor
+       let actualDefense = attacked.defense * defenseFactor
+
+       if (actualAttack > actualDefense) {
+            attacked.life -= actualAttack
+            console.log(`${attacking.name} acaba de causa ${actualAttack.toFixed(2)} em ${attacked.name}`)
+       } else {
+        console.log('defesa perfeita')
+
+       }
 
         this.update()
     }
