@@ -20,7 +20,7 @@ class Knight extends Character{
         this.life = 100
         this.attack = 10
         this.defense = 8
-        this.maxlife = this.life
+        this.maxLife = this.life
     }
 }
 class Mage extends Character{
@@ -29,7 +29,7 @@ class Mage extends Character{
         this.life = 60
         this.attack = 25
         this.defense = 5
-        this.maxlife = this.life
+        this.maxLife = this.life
     }
 }
 class LittleMonster extends Character{
@@ -38,7 +38,7 @@ class LittleMonster extends Character{
     this.life = 30
     this.attack = 5
     this.defense = 2
-    this.maxlife = this.life
+    this.maxLife = this.life
 }
 }
 class BigMonster extends Character{
@@ -47,22 +47,21 @@ class BigMonster extends Character{
     this.life = 120
     this.attack = 15
     this.defense = 1
-    this.maxlife = this.life
+    this.maxLife = this.life
 }
 }
 class Stage {
-    constructor(Fighter1,Fighter2,FighterEL1,FighterEl2){
+    constructor(Fighter1,Fighter2,FighterEL1,FighterEL2){
         this.Fighter1 = Fighter1
         this.Fighter2 = Fighter2
         this.FighterEL1 = FighterEL1
-        this.FighterEl2 = FighterEl2
+        this.FighterEL2 = FighterEL2
     }
     start(){
         this.update()
     }
     update(){
-        this.FighterEL1.querryselector('.name').innerHTML = this.Fighter1.name
-        this.FighterEL2.querryselector('.name').innerHTML = this.Fighter2.name
-
+        this.FighterEL1.querySelector('.name').innerHTML = this.Fighter1.name
+        this.FighterEL2.querySelector('.name').innerHTML = this.Fighter2.name
     }
 }
