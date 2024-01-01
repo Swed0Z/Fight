@@ -51,17 +51,26 @@ class BigMonster extends Character{
 }
 }
 class Stage {
-    constructor(Fighter1,Fighter2,FighterEL1,FighterEL2){
-        this.Fighter1 = Fighter1
-        this.Fighter2 = Fighter2
-        this.FighterEL1 = FighterEL1
-        this.FighterEL2 = FighterEL2
+    constructor(Fighter1, Fighter2, FighterEL1, FighterEL2) {
+        this.Fighter1 = Fighter1;
+        this.Fighter2 = Fighter2;
+        this.FighterEL1 = FighterEL1;
+        this.FighterEL2 = FighterEL2;
     }
-    start(){
-        this.update()
+
+    start() {
+        this.update();
     }
-    update(){
-        this.FighterEL1.querySelector('.name').innerHTML = this.Fighter1.name
-        this.FighterEL2.querySelector('.name').innerHTML = this.Fighter2.name
+
+    update() {
+        if (this.FighterEL1 && this.FighterEL2) {
+            this.FighterEL1.querySelector('.name').innerHTML = this.Fighter1.name;
+            let f1PCT = (this.Fighter1.life / this.Fighter1.maxLife) * 100;
+            this.FighterEL1.querySelector('.Bar').style.width = `${f1PCT}%`;
+
+            this.FighterEL2.querySelector('.name').innerHTML = this.Fighter2.name;
+            let f2PCT = (this.Fighter2.life / this.Fighter2.maxLife) * 100;
+            this.FighterEL2.querySelector('.Bar').style.width = `${f2PCT}%`;
+        }
     }
 }
