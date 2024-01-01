@@ -1,0 +1,6 @@
+Loja, sistema de gold, novos itens
+escolha de classe, tipos de ataques, monstros aleatórios com ataques aleatórios, bosses
+animações, assets de personagens e itens lifebar muda conforme a %
+
+
+
