@@ -1,6 +1,43 @@
-Loja, sistema de gold, novos itens
-escolha de classe, tipos de ataques, monstros aleatórios com ataques aleatórios, bosses
-animações, assets de personagens e itens lifebar muda conforme a %
-
-
-
+1. Loja e Sistema de Gold:
+Estrutura de Dados:
+Crie uma lista de itens disponíveis na loja, cada um com um preço.
+Mantenha uma variável global para o ouro do jogador.
+Implementação:
+Ao vencer batalhas, recompense os jogadores com ouro.
+Ao comprar um item, subtraia o preço do ouro do jogador e aplique os efeitos do item.
+2. Escolha de Classe:
+Estrutura de Dados:
+Implemente um sistema de classes com atributos específicos para cada uma.
+Implementação:
+Ao iniciar o jogo, permita que os jogadores escolham sua classe.
+Atribua os atributos da classe escolhida ao personagem do jogador.
+3. Tipos de Ataques:
+Estrutura de Dados:
+Associe diferentes tipos de ataques a cada classe ou inimigo.
+Implementação:
+Implemente funções ou métodos específicos para cada tipo de ataque.
+Durante o combate, escolha automaticamente o tipo de ataque com base na classe ou inimigo.
+4. Monstros Aleatórios com Ataques Aleatórios:
+Estrutura de Dados:
+Mantenha uma lista de monstros com estatísticas e tipos de ataque.
+Implementação:
+Ao explorar, acione encontros aleatórios com diferentes monstros.
+Implemente funções para simular ataques aleatórios dos monstros.
+5. Bosses:
+Estrutura de Dados:
+Defina classes especiais para chefes com estatísticas e habilidades únicas.
+Implementação:
+Ao atingir certos pontos na história ou exploração, desencadeie encontros com chefes.
+Implemente mecânicas de combate exclusivas para cada chefe.
+6. Animações:
+Implementação:
+Utilize bibliotecas de animação (como CSS animations, GSAP, ou PixiJS) para criar animações fluídas.
+Adicione animações para ataques, danos, curas e outros eventos importantes.
+7. Assets de Personagens e Itens:
+Implementação:
+Utilize sprites para representar personagens e itens.
+Adquira ou crie imagens consistentes com o estilo visual desejado.
+8. Lifebar Dinâmica:
+Implementação:
+Atualize dinamicamente a barra de vida durante os eventos do jogo.
+Utilize transições CSS para criar efeitos suaves de mudança.
