@@ -60,17 +60,27 @@ class Stage {
 
     start() {
         this.update()
+
+        this.FighterEL1.querySelector('.AttackButton').addEventListener('click', () => this.doAttack(this.Fighter1,this.Fighter2))
+
+        this.FighterEL2.querySelector('.AttackButton').addEventListener('click', () => this.doAttack(this.Fighter2,this.Fighter1))
+        
     }
 
     update() {
-        if (this.FighterEL1 && this.FighterEL2) {
-            let f1PCT = (this.Fighter1.life / this.Fighter1.maxLife) * 100
-            this.FighterEL1.querySelector('.name').innerHTML = `${this.Fighter1.name} - ${this.Fighter1.life}HP`
-            this.FighterEL1.querySelector('.Bar').style.width = `${f1PCT}%`
 
-            let f2PCT = (this.Fighter2.life / this.Fighter2.maxLife) * 100
-            this.FighterEL2.querySelector('.name').innerHTML = `${this.Fighter2.name} - ${this.Fighter2.life}HP`
-            this.FighterEL2.querySelector('.Bar').style.width = `${f2PCT}%`
-        }
+        let f1PCT = (this.Fighter1.life / this.Fighter1.maxLife) * 100
+        this.FighterEL1.querySelector('.name').innerHTML = `${this.Fighter1.name} - ${this.Fighter1.life}HP`
+        this.FighterEL1.querySelector('.Bar').style.width = `${f1PCT}%`
+
+        let f2PCT = (this.Fighter2.life / this.Fighter2.maxLife) * 100
+        this.FighterEL2.querySelector('.name').innerHTML = `${this.Fighter2.name} - ${this.Fighter2.life}HP`
+        this.FighterEL2.querySelector('.Bar').style.width = `${f2PCT}%`
+        
+    }
+    doAttack(attacking, attacked){
+        console.log(`${attacking.name} está atacando ${attacked.name}`)
+
+        this.update()
     }
 }
