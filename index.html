@@ -7,24 +7,47 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="FightArea">
-    <div id="Character">
-        <div class="LifeBar">
-            <div class="Bar" style="width: 10%;"></div>
+    <header>
+        <h1>RPG</h1>
+        <ul>
+            <li>Inicio</li>
+            <li>Sobre o Jogo</li>
+            <li>Contato</li>
+        </ul>
+    </header>
+<main>
+    <div class="initial">
+        <h1>RPG</h1>
+        <div>
+            <button class="initialButton" id="play">Jogar</button>
         </div>
-        <strong class="name">--</strong>
-        <div><button class="AttackButton">Atacar</button></div>
-    </div>
-    <div id="Monster">
-        <div class="LifeBar">
-            <div class="Bar" style="width: 10%;"></div>
+        <div>
+            <button class="initialButton" id="Continue">Continuar</button>
+            <button class="initialButton" id="newGame">Novo Jogo</button>
         </div>
-        <strong class="name">--</strong>
-        <div><button class="AttackButton">Atacar</button></div>
     </div>
-</div>
-<ul class="Log"></ul>
- 
+    
+    <div class="FightArea">
+        <div id="Character">
+            <div class="LifeBar">
+                <div class="Bar" style="width: 10%;"></div>
+            </div>
+            <strong class="name">--</strong>
+            <div><button class="AttackButton">Atacar</button></div>
+        </div>
+        <div id="Monster">
+            <div class="LifeBar">
+                <div class="Bar" style="width: 10%;"></div>
+            </div>
+            <strong class="name">--</strong>
+            <div><button class="AttackButton">Atacar</button></div>
+        </div>
+    </div> 
+    <ul class="Log"></ul>
+</main>
+<footer>
+    <p class="footer">Feito por Felipe Lopes</p>
+</footer>
 <script src="classes.js"></script>
 <script src="script.js"></script>
 </body>
