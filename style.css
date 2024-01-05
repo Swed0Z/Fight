@@ -1,3 +1,7 @@
+:root {
+    --ciano-padrao: #00FFFF;
+    --ciano-escuro: #008080;
+}
 .FightArea {
     display: flex;
     gap: 20px;
