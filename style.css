@@ -4,9 +4,19 @@
 }
 .initial{
     position:absolute;
+    z-index: 2;
+}
+.interface1{
+position: absolute;
+z-index: 2;
+}
+.interface2{
+position: relative;
+z-index: 1;
 }
 .FightArea {
     position: relative;
+    z-index: 1;
     display: flex;
     gap: 20px;
 }
