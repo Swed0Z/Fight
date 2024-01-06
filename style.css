@@ -2,7 +2,11 @@
     --ciano-padrao: #00FFFF;
     --ciano-escuro: #008080;
 }
+.initial{
+    position:absolute;
+}
 .FightArea {
+    position: relative;
     display: flex;
     gap: 20px;
 }
