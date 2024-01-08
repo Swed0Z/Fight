@@ -2,18 +2,46 @@
     --ciano-padrao: #00FFFF;
     --ciano-escuro: #008080;
 }
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header > h1{
+    display: flex;
+    justify-content: center;
+}
+ul{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    list-style-type: none;
+}
+main > div:not(.initial) {
+    display: none;
+}
 .initial{
-    position:absolute;
+    background-color: violet;
+    display: flex;
+    justify-content: center;
+    position: absolute;
     z-index: 2;
+    width: 100vw;
 }
 .interface1{
-position: absolute;
-z-index: 2;
+    display: block;
+    position: absolute;
+    z-index: 2;
+}
+#play{
+    margin-top: 150px;
 }
 .interface2{
-position: relative;
-z-index: 1;
+    display: none;
+    position: relative;
+    z-index: 1;
 }
+
 .FightArea {
     position: relative;
     z-index: 1;
