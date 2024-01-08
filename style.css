@@ -21,10 +21,6 @@ ul{
     list-style-type: none;
 }
 
-main > div:not(.initial) {
-    display: none;
-}
-
 .initial{
     background-color: violet;
     display: flex;
@@ -40,12 +36,11 @@ main > div:not(.initial) {
     z-index: 2;
 }
 
-#play{
+#playButton{
     margin-top: 150px;
 }
 
 .interface2{
-    display: none;
     position: relative;
     z-index: 1;
 }
@@ -86,4 +81,7 @@ footer{
     width: 100vw;
     text-align: center;
 }
+.hidden{
+    display: none;
+  }
 
