@@ -2,24 +2,29 @@
     --ciano-padrao: #00FFFF;
     --ciano-escuro: #008080;
 }
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 header > h1{
     display: flex;
     justify-content: center;
 }
+
 ul{
     display: flex;
     justify-content: center;
     gap: 20px;
     list-style-type: none;
 }
+
 main > div:not(.initial) {
     display: none;
 }
+
 .initial{
     background-color: violet;
     display: flex;
@@ -28,14 +33,17 @@ main > div:not(.initial) {
     z-index: 2;
     width: 100vw;
 }
+
 .interface1{
     display: block;
     position: absolute;
     z-index: 2;
 }
+
 #play{
     margin-top: 150px;
 }
+
 .interface2{
     display: none;
     position: relative;
@@ -64,17 +72,18 @@ main > div:not(.initial) {
     background-color: red;
     border-radius: 5px;
 }
+
 .Log{
     border: 1px dotted #999;
     height: 200px;
     overflow-y: scroll;
 }
+
 footer{
     position: fixed;
     bottom:0;
     left:0;
     width: 100vw;
     text-align: center;
-    
 }
 
