@@ -33,12 +33,17 @@ a{
     position: absolute;
     z-index: 2;
     width: 100vw;
+    height: 60vh;
 }
 
 .interface1{
     display: block;
     position: relative;
     z-index: 2;
+}
+
+.initial > h1 {
+
 }
 
 #playButton{
