@@ -20,6 +20,9 @@ ul{
     gap: 20px;
     list-style-type: none;
 }
+a{
+    text-decoration: none;
+}
 
 .initial{
     background-color: violet;
@@ -44,7 +47,12 @@ ul{
 
 .interface2{
     position: relative;
+    flex-direction: column;
     z-index: 1;
+}
+
+.initialButton{
+    width: 30vw;
 }
 
 .FightArea {
