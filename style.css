@@ -24,7 +24,9 @@ ul{
 .initial{
     background-color: violet;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     position: absolute;
     z-index: 2;
     width: 100vw;
@@ -32,7 +34,7 @@ ul{
 
 .interface1{
     display: block;
-    position: absolute;
+    position: relative;
     z-index: 2;
 }
 
@@ -41,7 +43,7 @@ ul{
 }
 
 .interface2{
-    position: absolute;
+    position: relative;
     z-index: 1;
 }
 
