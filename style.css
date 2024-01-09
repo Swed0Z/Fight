@@ -25,7 +25,7 @@ a{
 }
 
 .initial{
-    background-color: violet;
+    background-color: var(--ciano-escuro);
     display: flex;
     flex-direction: column;
     justify-content: center;
