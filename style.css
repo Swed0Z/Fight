@@ -42,12 +42,13 @@ a{
     z-index: 2;
 }
 
-.initial > h1 {
-
+.interfaceh1 {
+    margin-top: 15vh;
+    margin-bottom: auto
 }
 
 #playButton{
-    margin-top: 150px;
+    margin-bottom: 30vh;
 }
 
 .interface2{
