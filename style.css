@@ -40,6 +40,7 @@ a{
     display: block;
     position: relative;
     z-index: 2;
+    margin-bottom: 30vh;
 }
 
 .interfaceh1 {
@@ -47,15 +48,16 @@ a{
     margin-bottom: auto
 }
 
-#playButton{
-    margin-bottom: 30vh;
-}
-
 .interface2{
+    display: flex;
     position: relative;
     flex-direction: column;
     z-index: 1;
+    margin-bottom: 25vh;
+    gap: 5vh;
+    
 }
+
 
 .initialButton{
     width: 30vw;
