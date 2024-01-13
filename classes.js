@@ -1,3 +1,5 @@
+let storage = localStorage;
+
 class Character {
     _life = 1
     maxLife = 1
@@ -59,8 +61,7 @@ class Stage {
     }
 
     start() {
-        this.update()
-
+        update()
         this.FighterEL1.querySelector('.AttackButton').addEventListener('click', () => this.doAttack(this.Fighter1,this.Fighter2))
 
         this.FighterEL2.querySelector('.AttackButton').addEventListener('click', () => this.doAttack(this.Fighter2,this.Fighter1))
@@ -98,5 +99,14 @@ class Stage {
        }
 
         this.update()
+        this.saveGame()
+    }
+    saveGame(){
+        localStorage.setItem('Fighter1', JSON.stringify(this.Fighter1));
+        localStorage.setItem('Fighter2', JSON.stringify(this.Fighter2));
+    }
+    loadGame(){
+        this.Fighter1 = JSON.parse(localStorage.getItem('Fighter1'));
+        this.Fighter2 = JSON.parse(localStorage.getItem('Fighter2'));
     }
 }
