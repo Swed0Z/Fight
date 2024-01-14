@@ -61,7 +61,7 @@ class Stage {
     }
 
     start() {
-
+        debugger
         this.loadGame();
         this.update();
         this.FighterEL1.querySelector('.AttackButton').addEventListener('click', () => this.doAttack(this.Fighter1, this.Fighter2))

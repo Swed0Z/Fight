@@ -5,10 +5,13 @@ function Play() {
     interface2.classList.remove('hidden')
     interface1.classList.add ('hidden')
 }
-function Continue(){
+function NextArea(){
     let initial = document.querySelector('.initial')
     let FightArea = document.querySelector('.FightArea')
 
     FightArea.classList.remove('hidden')
     initial.classList.add ('hidden')
+}
+function NewGame(){
+    localStorage.clear();
 }
