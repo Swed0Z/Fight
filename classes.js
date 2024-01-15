@@ -102,19 +102,18 @@ class Stage {
         let actualAttack = attacking.attack * attackFactor
         let actualDefense = attacked.defense * defenseFactor
 
-        if (actualAttack > actualDefense) {
+        if( attacked._life <= 0 || attacking._life <= 0){
+            console.log('alguém morreu')
+            return attacked._life = 0
+        }else{
+            if (actualAttack > actualDefense) {
             attacked._life -= actualAttack
             console.log(`${attacking.name} acaba de causa ${actualAttack.toFixed(2)} em ${attacked.name}`)
-        } else {
+            } else {
             console.log('defesa perfeita')
 
+            }
         }
-
-        if (attacking._life <= 0 || attacked._life <= 0) {
-            console.log('alguém ta morto')
-            return
-        }
-
         this.update()
         this.saveGame()
     }
