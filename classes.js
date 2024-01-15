@@ -61,23 +61,40 @@ class Stage {
     }
 
     start() {
-        debugger
-        this.loadGame();
-        this.update();
-        this.FighterEL1.querySelector('.AttackButton').addEventListener('click', () => this.doAttack(this.Fighter1, this.Fighter2))
-
-        this.FighterEL2.querySelector('.AttackButton').addEventListener('click', () => this.doAttack(this.Fighter2, this.Fighter1))
+            this.loadGame()
+            this.update()
+            this.FighterEL1.querySelector('.AttackButton').addEventListener('click', () => this.doAttack(this.Fighter1, this.Fighter2))
+    
+            this.FighterEL2.querySelector('.AttackButton').addEventListener('click', () => this.doAttack(this.Fighter2, this.Fighter1))     
     }
 
     update() {
-        let f1PCT = (this.Fighter1._life / this.Fighter1.maxLife) * 100
-        this.FighterEL1.querySelector('.name').innerHTML = `${this.Fighter1.name} - ${this.Fighter1._life.toFixed(1)}HP`
-        this.FighterEL1.querySelector('.Bar').style.width = `${f1PCT}%`
+        if (this.Fighter1 && this.Fighter1._life !== undefined && this.Fighter2 && this.Fighter2._life !== undefined) {
+            let f1PCT = (this.Fighter1._life / this.Fighter1.maxLife) * 100
+            this.FighterEL1.querySelector('.name').innerHTML = `${this.Fighter1.name} - ${this.Fighter1._life.toFixed(1)}HP`
+            this.FighterEL1.querySelector('.Bar').style.width = `${f1PCT}%`
+        
+            let f2PCT = (this.Fighter2._life / this.Fighter2.maxLife) * 100
+            this.FighterEL2.querySelector('.name').innerHTML = `${this.Fighter2.name} - ${this.Fighter2._life.toFixed(1)}HP`
+            this.FighterEL2.querySelector('.Bar').style.width = `${f2PCT}%`
+        }else {
+            this.criation()
+        }
+        if (this.Fighter1._life <= 0) {
+            this.FighterEL1.querySelector('.name').innerHTML = `${this.Fighter1.name} - 0HP`;
+        }
 
-        let f2PCT = (this.Fighter2._life / this.Fighter2.maxLife) * 100
-        this.FighterEL2.querySelector('.name').innerHTML = `${this.Fighter2.name} - ${this.Fighter2._life.toFixed(1)}HP`
-        this.FighterEL2.querySelector('.Bar').style.width = `${f2PCT}%`
+        if (this.Fighter2._life <= 0) {
+            this.FighterEL2.querySelector('.name').innerHTML = `${this.Fighter2.name} - 0HP`;
+        }
     }
+    criation(){
+        this.Fighter1 = new Knight('Swed')
+        this.Fighter2 = new LittleMonster()
+
+        this.saveGame()
+    }
+
     doAttack(attacking, attacked) {
         let attackFactor = (Math.random() * 2).toFixed(2)
         let defenseFactor = (Math.random() * 2).toFixed(2)
@@ -102,11 +119,11 @@ class Stage {
         this.saveGame()
     }
     saveGame() {
-        localStorage.setItem('Fighter1', JSON.stringify(this.Fighter1));
-        localStorage.setItem('Fighter2', JSON.stringify(this.Fighter2));
+        localStorage.setItem('Fighter1', JSON.stringify(this.Fighter1))
+        localStorage.setItem('Fighter2', JSON.stringify(this.Fighter2))
     }
     loadGame() {
-        this.Fighter1 = JSON.parse(localStorage.getItem('Fighter1'));
-        this.Fighter2 = JSON.parse(localStorage.getItem('Fighter2'));
+        this.Fighter1 = JSON.parse(localStorage.getItem('Fighter1'))
+        this.Fighter2 = JSON.parse(localStorage.getItem('Fighter2'))
     }
 }
