@@ -1,5 +1,3 @@
-let storage = localStorage;
-
 class Character {
     _life = 1
     maxLife = 1
@@ -65,7 +63,12 @@ class Stage {
             this.update()
             this.FighterEL1.querySelector('.AttackButton').addEventListener('click', () => this.doAttack(this.Fighter1, this.Fighter2))
     
-            this.FighterEL2.querySelector('.AttackButton').addEventListener('click', () => this.doAttack(this.Fighter2, this.Fighter1))     
+            this.FighterEL2.querySelector('.AttackButton').addEventListener('click', () => this.doAttack(this.Fighter2, this.Fighter1))  
+
+            document.querySelector('#newGame').addEventListener('click', () => {
+                this.criation()
+                this.update()
+            })  
     }
 
     update() {
@@ -79,6 +82,7 @@ class Stage {
             this.FighterEL2.querySelector('.Bar').style.width = `${f2PCT}%`
         }else {
             this.criation()
+            this.update()
         }
         if (this.Fighter1._life <= 0) {
             this.FighterEL1.querySelector('.name').innerHTML = `${this.Fighter1.name} - 0HP`;
@@ -94,6 +98,7 @@ class Stage {
 
         this.saveGame()
     }
+
 
     doAttack(attacking, attacked) {
         let attackFactor = (Math.random() * 2).toFixed(2)
