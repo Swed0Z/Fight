@@ -32,6 +32,15 @@ class Mage extends Character {
         this.maxLife = this.life
     }
 }
+class Archer extends Character {
+    constructor(name) {
+        super(name)
+        this.life = 70
+        this.attack = 15
+        this.defense = 6
+        this.maxLife = this.life
+    }
+}
 class LittleMonster extends Character {
     constructor() {
         super('Little Monster')
