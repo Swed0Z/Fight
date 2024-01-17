@@ -19,6 +19,13 @@ function selectHeroArea(){
     selectHero.classList.remove('hidden')
     initial.classList.add ('hidden')
 }
+function FightArea2(){
+        let FightArea = document.querySelector('.FightArea')
+        let selectHero = document.querySelector('.selectHero')
+    
+        FightArea.classList.remove('hidden')
+        selectHero.classList.add ('hidden')
+    }
 function NewGame(){
     localStorage.clear();
 }
