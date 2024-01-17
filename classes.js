@@ -115,10 +115,11 @@ class Stage {
 
         let actualAttack = attacking.attack * attackFactor
         let actualDefense = attacked.defense * defenseFactor
-
+        
         if( attacked._life <= 0 || attacking._life <= 0){
             console.log('alguém morreu')
             return attacked._life = 0
+            
         }else{
             if (actualAttack > actualDefense) {
             attacked._life -= actualAttack
