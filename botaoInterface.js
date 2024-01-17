@@ -20,12 +20,15 @@ function selectHeroArea(){
     initial.classList.add ('hidden')
 }
 function FightArea2(){
-        let FightArea = document.querySelector('.FightArea')
-        let selectHero = document.querySelector('.selectHero')
+    let FightArea = document.querySelector('.FightArea')
+    let selectHero = document.querySelector('.selectHero')
     
-        FightArea.classList.remove('hidden')
-        selectHero.classList.add ('hidden')
-    }
+    FightArea.classList.remove('hidden')
+    selectHero.classList.add ('hidden')
+}
+document.querySelector('#beginning').addEventListener('click', function() {
+    location.reload();
+});
 function NewGame(){
     localStorage.clear();
 }

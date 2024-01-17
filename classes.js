@@ -82,6 +82,7 @@ class Stage {
 
     update() {
         if (this.Fighter1 && this.Fighter1._life !== undefined && this.Fighter2 && this.Fighter2._life !== undefined) {
+            
             let f1PCT = (this.Fighter1._life / this.Fighter1.maxLife) * 100
             this.FighterEL1.querySelector('.name').innerHTML = `${this.Fighter1.name} - ${this.Fighter1._life.toFixed(1)}HP`
             this.FighterEL1.querySelector('.Bar').style.width = `${f1PCT}%`
@@ -118,11 +119,12 @@ class Stage {
         
         if( attacked._life <= 0 || attacking._life <= 0){
             console.log('alguém morreu')
-            return attacked._life = 0
-            
+            alert('alguém morreu')
+
         }else{
             if (actualAttack > actualDefense) {
             attacked._life -= actualAttack
+            attacked._life = Math.max(0, attacked._life);
             console.log(`${attacking.name} acaba de causa ${actualAttack.toFixed(2)} em ${attacked.name}`)
             } else {
             console.log('defesa perfeita')

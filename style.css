@@ -65,16 +65,18 @@ a{
 .selectHero{
     display: flex;
     gap: 15vw;
+    justify-content: center;
 }
 .hero{
     width: 20vw;
 
 }
-img{
+.hero > img{
     width: 20vw;
     height: 60vh;
     object-fit: cover;
     object-position: top;
+    border-radius: 50px;
 }
 .FightArea {
     position: relative;
