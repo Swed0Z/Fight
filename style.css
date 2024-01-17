@@ -62,7 +62,20 @@ a{
 .initialButton{
     width: 30vw;
 }
+.selectHero{
+    display: flex;
+    gap: 15vw;
+}
+.hero{
+    width: 20vw;
 
+}
+img{
+    width: 20vw;
+    height: 60vh;
+    object-fit: cover;
+    object-position: top;
+}
 .FightArea {
     position: relative;
     z-index: 1;

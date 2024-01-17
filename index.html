@@ -22,14 +22,14 @@
             <button class="initialButton" id="playButton" onclick="Play()">Jogar</button>
         </div>
         <div class="interface2 hidden" >
-            <button class="initialButton" id="Continue" onclick="NextArea()" >Continuar</button>
-            <button class="initialButton" id="newGame" onclick="NewGame();NextArea()">Novo Jogo</button>
+            <button class="initialButton" id="Continue" onclick="FightArea()" >Continuar</button>
+            <button class="initialButton" id="newGame" onclick="NewGame();selectHeroArea()">Novo Jogo</button>
         </div>
     </div>
     <div class="selectHero hidden">
-        <div class="hero"><img src="https://historiablog.files.wordpress.com/2023/09/templario.jpeg?w=723" alt=""></div>
-        <div class="hero"><img src="https://i.pinimg.com/564x/0d/7a/48/0d7a481e419ae052a4dc0ce454f83e24.jpg" alt=""></div>
-        <div class="hero"><img src="https://1.bp.blogspot.com/-iK92KqEnF7o/YD_HMhoWq6I/AAAAAAAAKiU/VtcWAxIDvm0eFh_yYsTyg5o5s-RRbqO3QCLcBGAsYHQ/s650/maerel-hibadita-final-aelwyn-alorr-small.jpg" alt=""></div>
+        <div class="hero"><img src="https://historiablog.files.wordpress.com/2023/09/templario.jpeg?w=723" alt="" id="Knight"></div>
+        <div class="hero"><img src="https://i.pinimg.com/564x/0d/7a/48/0d7a481e419ae052a4dc0ce454f83e24.jpg" alt="" id="Mage"></div>
+        <div class="hero"><img src="https://1.bp.blogspot.com/-iK92KqEnF7o/YD_HMhoWq6I/AAAAAAAAKiU/VtcWAxIDvm0eFh_yYsTyg5o5s-RRbqO3QCLcBGAsYHQ/s650/maerel-hibadita-final-aelwyn-alorr-small.jpg" alt="" id="Archer"></div>
     </div>
     
     <div class="FightArea hidden">

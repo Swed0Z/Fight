@@ -5,11 +5,18 @@ function Play() {
     interface2.classList.remove('hidden')
     interface1.classList.add ('hidden')
 }
-function NextArea(){
+function FightArea(){
     let initial = document.querySelector('.initial')
     let FightArea = document.querySelector('.FightArea')
 
     FightArea.classList.remove('hidden')
+    initial.classList.add ('hidden')
+}
+function selectHeroArea(){
+    let initial = document.querySelector('.initial')
+    let selectHero = document.querySelector('.selectHero')
+
+    selectHero.classList.remove('hidden')
     initial.classList.add ('hidden')
 }
 function NewGame(){
