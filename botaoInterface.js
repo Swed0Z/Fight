@@ -1,7 +1,7 @@
 let interface1 = document.querySelector('.interface1')
 let interface2 = document.querySelector('.interface2')
 let initial = document.querySelector('.initial')
-let fightArea = document.querySelector('.FightArea')
+let fightAreaLocal = document.querySelector('.FightArea')
 let selectHero = document.querySelector('.selectHero')
 let nameHero = document.querySelector('.nameHeroArea')
 function Play() {
@@ -9,18 +9,19 @@ function Play() {
     interface1.classList.add ('hidden')
 }
 function FightArea(){
-    fightArea.classList.remove('hidden')
+    fightAreaLocal.classList.remove('hidden')
     initial.classList.add ('hidden')
 }
 function nameHeroArea(){
-
+    initial.classList.add ('hidden')
+    nameHero.classList.remove('hidden')
 }
 function selectHeroArea(){
     selectHero.classList.remove('hidden')
     initial.classList.add ('hidden')
 }
 function FightArea2(){    
-    fightArea.classList.remove('hidden')
+    fightAreaLocal.classList.remove('hidden')
     selectHero.classList.add ('hidden')
 }
 document.querySelector('#beginning').addEventListener('click', function() {

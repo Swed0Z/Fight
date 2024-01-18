@@ -23,16 +23,16 @@
         </div>
         <div class="interface2 hidden" >
             <button class="initialButton" id="Continue" onclick="FightArea()" >Continuar</button>
-            <button class="initialButton" id="newGame" onclick="NewGame();selectHeroArea()">Novo Jogo</button>
+            <button class="initialButton" id="newGame" onclick="NewGame();nameHeroArea()">Novo Jogo</button>
         </div>
     </div>
-    <div class="nameHeroArea" onclick="FightArea2()">
+    <div class="nameHeroArea">
         <h2></h2>
         <div>
             <form id="fomrName" action="">
                 <label for="">Name</label>
                 <input type="text" name="" id="">
-                <button type="submit">escolher</button>
+                <button type="button" onclick=" selectHeroArea()">escolher</button>
             </form>
         </div>
     </div>
