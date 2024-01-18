@@ -32,3 +32,20 @@ document.querySelector('#beginning').addEventListener('click', function() {
 function NewGame(){
     localStorage.clear();
 }
+
+function selectCharacter(characterClass) {
+    switch (characterClass) {
+      case 'Mage':
+        Char = new Mage(nameHero);
+        break;
+      case 'Knight':
+        Char = new Knight(nameHero);
+        break;
+      case 'Archer':
+        Char = new Archer(nameHero);
+        break;
+      default:
+        console.error('Invalid character class');
+        return;
+    }
+}
