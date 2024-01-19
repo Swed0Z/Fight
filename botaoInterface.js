@@ -18,7 +18,7 @@ function nameHeroArea(){
 }
 function selectHeroArea(){
     selectHero.classList.remove('hidden')
-    initial.classList.add ('hidden')
+    nameHero.classList.add ('hidden')
 }
 function FightArea2(){    
     fightAreaLocal.classList.remove('hidden')
@@ -29,6 +29,11 @@ document.querySelector('#beginning').addEventListener('click', function() {
 });
 function NewGame(){
     localStorage.clear();
+}
+
+function saveName(){
+    let nameHero = document.querySelector('#nameInput').value
+    console.log(nameHero)
 }
 
 function selectCharacter(characterClass) {
