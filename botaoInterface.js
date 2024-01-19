@@ -33,16 +33,15 @@ function NewGame(){
 
 function saveName(){
     let nameHero = document.querySelector('#nameInput').value
-    console.log(nameHero)
 }
 
-function selectCharacter(characterClass) {
-    switch (characterClass) {
-      case 'Mage':
-        Char = new Mage(nameHero);
-        break;
+function selectCharacter(characterClass) {debugger
+    switch (characterClass) { 
       case 'Knight':
         Char = new Knight(nameHero);
+        break;
+      case 'Mage':
+        Char = new Mage(nameHero);
         break;
       case 'Archer':
         Char = new Archer(nameHero);
@@ -51,4 +50,5 @@ function selectCharacter(characterClass) {
         console.error('Invalid character class');
         return;
     }
+    stage.update()
 }
