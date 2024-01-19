@@ -50,5 +50,6 @@ function selectCharacter(characterClass) {debugger
         console.error('Invalid character class');
         return;
     }
+    console.log(Char.constructor.name)
     stage.update()
 }
