@@ -1,5 +1,5 @@
-let Char = new Knight('Swed');
-let Monster = new LittleMonster();
+let Char
+let Monster = new LittleMonster()
 
 const stage = new Stage(
     Char,
