@@ -11,6 +11,7 @@ function Play() {
 function FightArea(){
     fightAreaLocal.classList.remove('hidden')
     initial.classList.add ('hidden')
+    nameHero.classList.add('hidden')
 }
 function nameHeroArea(){
     initial.classList.add ('hidden')
