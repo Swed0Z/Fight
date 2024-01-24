@@ -4,6 +4,7 @@ let initial = document.querySelector('.initial')
 let fightAreaLocal = document.querySelector('.FightArea')
 let selectHero = document.querySelector('.selectHero')
 let nameHero = document.querySelector('.nameHeroArea')
+let nameHeroValue
 function Play() {
     interface2.classList.remove('hidden')
     interface1.classList.add ('hidden')
@@ -33,24 +34,28 @@ function NewGame(){
 }
 
 function saveName(){
-    let nameHero = document.querySelector('#nameInput').value
+    nameHeroValue = document.querySelector('#nameInput').value
+    debugger
 }
 
 function selectCharacter(characterClass) {debugger
     switch (characterClass) { 
       case 'Knight':
-        Char = new Knight(nameHero);
+        Char = new Knight(nameHeroValue);
         break;
       case 'Mage':
-        Char = new Mage(nameHero);
+        Char = new Mage(nameHeroValue);
         break;
       case 'Archer':
-        Char = new Archer(nameHero);
+        Char = new Archer(nameHeroValue);
         break;
       default:
         console.error('Invalid character class');
         return;
     }
     console.log(Char.constructor.name)
+    stage.Fighter1 = Char
+    stage.Fighter1.name = nameHeroValue
     stage.update()
+
 }

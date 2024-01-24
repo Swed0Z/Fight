@@ -1,7 +1,8 @@
 let Char
 let Monster = new LittleMonster()
+let s
 
-const stage = new Stage(
+let stage = new Stage(
     Char,
     Monster,
     document.querySelector('#Character'),
