@@ -101,6 +101,7 @@ class Stage {
         if (this.Fighter2._life <= 0) {
             this.FighterEL2.querySelector('.name').innerHTML = `${this.Fighter2.name} - 0HP`;
         }
+        this.saveGame()
     }
     criation(){
         this.Fighter1 = new Knight('Swed')
