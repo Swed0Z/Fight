@@ -35,10 +35,9 @@ function NewGame(){
 
 function saveName(){
     nameHeroValue = document.querySelector('#nameInput').value
-    debugger
 }
 
-function selectCharacter(characterClass) {debugger
+function selectCharacter(characterClass) {
     switch (characterClass) { 
       case 'Knight':
         Char = new Knight(nameHeroValue);

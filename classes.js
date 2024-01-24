@@ -110,7 +110,6 @@ class Stage {
         this.saveGame()
     }
     
-
     doAttack(attacking, attacked) {
         let attackFactor = (Math.random() * 2).toFixed(2)
         let defenseFactor = (Math.random() * 2).toFixed(2)

@@ -1,6 +1,5 @@
 let Char
 let Monster = new LittleMonster()
-let s
 
 let stage = new Stage(
     Char,
