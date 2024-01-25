@@ -62,6 +62,12 @@ a{
 .initialButton{
     width: 30vw;
 }
+.nameHeroArea{
+    display: flex;
+    flex-direction: column;
+    
+
+}
 .selectHero{
     display: flex;
     gap: 15vw;
