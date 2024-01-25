@@ -58,13 +58,13 @@ a{
     
 }
 
-
 .initialButton{
     width: 30vw;
 }
-.nameHeroArea{
+.nameHeroArea,#formName{
     display: flex;
     flex-direction: column;
+    align-items: center;
     
 
 }
