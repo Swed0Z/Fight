@@ -9,11 +9,15 @@ body{
     background-size: auto;
     background-position: top center;
     background-repeat: no-repeat;
+    cursor: url('https://sweezy-cursors.com/wp-content/uploads/cursor/castle-crashers-skeleton-thief-sword-animated/castle-crashers-skeleton-thief-sword-animated-cursor-1-32x32.png'), auto;
 }
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+a,button,input[type="text"],.hero{
+    cursor: url('https://sweezy-cursors.com/wp-content/uploads/cursor/castle-crashers-skeleton-thief-sword-animated/castle-crashers-skeleton-thief-sword-animated-pointer-32x32.png'), auto;
 }
 
 header > h1{
