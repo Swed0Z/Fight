@@ -289,3 +289,70 @@ footer { text-align: center; padding: 14px; font-size: .8rem; color: var(--parch
     .spr, .node.sel .ring { animation: none !important; }
     .screen.active, .overlay { animation: none; }
 }
+
+/* ---------- animações dos sprites ---------- */
+.sp-idle{transform-box:fill-box;transform-origin:50% 100%;animation:sp-breathe 4s ease-in-out infinite}
+@keyframes sp-breathe{0%,100%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-1.6px) scaleY(1.007)}}
+.sp-squish{transform-box:fill-box;transform-origin:50% 100%;animation:sp-squish 2.2s ease-in-out infinite}
+@keyframes sp-squish{0%,100%{transform:scale(1,1)}50%{transform:scale(1.05,.93)}}
+.sp-hop{transform-box:fill-box;transform-origin:50% 100%;animation:sp-hop 2.6s ease-in-out infinite}
+@keyframes sp-hop{0%,60%,100%{transform:translateY(0) scale(1,1)}70%{transform:scale(1.06,.92)}82%{transform:translateY(-10px) scale(.96,1.06)}92%{transform:scale(1.05,.94)}}
+.sp-float{transform-box:fill-box;animation:sp-float 2.8s ease-in-out infinite}
+@keyframes sp-float{0%,100%{transform:translateY(-3px)}50%{transform:translateY(5px)}}
+.sp-batL{transform-box:fill-box;transform-origin:100% 60%;animation:sp-batL .9s ease-in-out infinite}
+@keyframes sp-batL{0%,100%{transform:rotate(14deg)}50%{transform:rotate(-16deg)}}
+.sp-batR{transform-box:fill-box;transform-origin:0% 60%;animation:sp-batR .9s ease-in-out infinite}
+@keyframes sp-batR{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(16deg)}}
+.sp-legL{transform-box:fill-box;transform-origin:100% 50%;animation:sp-legL 1.6s ease-in-out infinite}
+@keyframes sp-legL{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(4deg)}}
+.sp-legR{transform-box:fill-box;transform-origin:0% 50%;animation:sp-legR 1.6s ease-in-out infinite}
+@keyframes sp-legR{0%,100%{transform:rotate(3deg)}50%{transform:rotate(-4deg)}}
+.sp-sway{transform-box:fill-box;transform-origin:35% 0%;animation:sp-sway 5s ease-in-out infinite}
+@keyframes sp-sway{0%,100%{transform:rotate(-1.4deg) skewX(.8deg)}50%{transform:rotate(1.8deg) skewX(-1deg)}}
+.sp-hairsway{transform-box:fill-box;transform-origin:40% 0%;animation:sp-hair 3.6s ease-in-out infinite}
+@keyframes sp-hair{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2.8deg)}}
+.sp-flutter{transform-box:fill-box;transform-origin:0% 0%;animation:sp-flutter 1.9s ease-in-out infinite}
+@keyframes sp-flutter{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(7deg)}}
+.sp-tail{transform-box:fill-box;transform-origin:0% 100%;animation:sp-tail 2.2s ease-in-out infinite}
+@keyframes sp-tail{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(8deg)}}
+.sp-earL{transform-box:fill-box;transform-origin:100% 100%;animation:sp-earL 4.4s ease-in-out infinite}
+@keyframes sp-earL{0%,86%,100%{transform:rotate(0)}90%{transform:rotate(-9deg)}94%{transform:rotate(2deg)}}
+.sp-earR{transform-box:fill-box;transform-origin:0% 100%;animation:sp-earR 4.4s ease-in-out .3s infinite}
+@keyframes sp-earR{0%,86%,100%{transform:rotate(0)}90%{transform:rotate(9deg)}94%{transform:rotate(-2deg)}}
+.sp-wingL{transform-box:fill-box;transform-origin:100% 70%;animation:sp-wingL 3.2s ease-in-out infinite}
+@keyframes sp-wingL{0%,100%{transform:rotate(3deg)}50%{transform:rotate(-5deg)}}
+.sp-wingR{transform-box:fill-box;transform-origin:0% 70%;animation:sp-wingR 3.2s ease-in-out infinite}
+@keyframes sp-wingR{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(5deg)}}
+.sp-blink{transform-box:fill-box;transform-origin:50% 50%;animation:sp-blink 5s infinite}
+@keyframes sp-blink{0%,91%,100%{transform:scaleY(1)}94%{transform:scaleY(.08)}}
+.sp-pulse{transform-box:fill-box;transform-origin:50% 50%;animation:sp-pulse 2.4s ease-in-out infinite}
+@keyframes sp-pulse{0%,100%{transform:scale(1);filter:brightness(1)}50%{transform:scale(1.1);filter:brightness(1.45)}}
+.sp-glow{transform-box:fill-box;transform-origin:50% 50%;animation:sp-glow 2.4s ease-in-out infinite}
+@keyframes sp-glow{0%,100%{opacity:.3;transform:scale(.9)}50%{opacity:.85;transform:scale(1.18)}}
+.sp-twinkle{animation:sp-twinkle 2.2s ease-in-out infinite}
+@keyframes sp-twinkle{0%,100%{opacity:.15}50%{opacity:1}}
+.sp-flame{transform-box:fill-box;transform-origin:50% 100%;animation:sp-flame .9s ease-in-out infinite alternate}
+@keyframes sp-flame{0%{transform:scale(1,.92) skewX(-3deg)}100%{transform:scale(1.06,1.08) skewX(3deg)}}
+.sp-bubble{transform-box:fill-box;animation:sp-bubble 2.6s ease-in infinite}
+@keyframes sp-bubble{0%{transform:translateY(8px) scale(.6);opacity:0}30%{opacity:1}100%{transform:translateY(-22px) scale(1.1);opacity:0}}
+.sp-mote{transform-box:fill-box;animation:sp-rise 4.5s linear infinite}
+@keyframes sp-rise{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(-70px);opacity:0}}
+.sp-drip{transform-box:fill-box;animation:sp-drip 2.4s ease-in infinite}
+@keyframes sp-drip{0%{transform:translateY(0) scaleY(.6);opacity:0}20%{opacity:1}100%{transform:translateY(14px) scaleY(1.2);opacity:0}}
+.sp-puff{transform-box:fill-box;transform-origin:0% 50%;animation:sp-puff 3s ease-out infinite}
+@keyframes sp-puff{0%{transform:translateX(0) scale(.5);opacity:0}25%{opacity:.8}100%{transform:translateX(-18px) scale(1.5);opacity:0}}
+.sp-glint{transform-box:fill-box;animation:sp-glint 4.6s ease-in-out infinite}
+@keyframes sp-glint{0%,60%{transform:translateY(0);opacity:0}68%{opacity:.95}100%{transform:translateY(110px);opacity:0}}
+.sp-ring{animation:sp-ring 6s linear infinite}
+@keyframes sp-ring{to{stroke-dashoffset:-100}}
+.sp-ring2{stroke-dasharray:2 5;animation:sp-ring2 9s linear infinite}
+@keyframes sp-ring2{to{stroke-dashoffset:70}}
+/* retratos pequenos ficam parados (desempenho) */
+.mini-portrait [class*="sp-"], .portrait:not(.big) [class*="sp-"] { animation: none !important; }
+@media (prefers-reduced-motion: reduce) { [class*="sp-"] { animation: none !important; } }
+.classCard .portrait { width: 100%; height: 210px; }
+.portrait.big { width: 150px; height: 220px; }
+.mini-portrait svg { transform: scale(3.4); transform-origin: 50% 9%; }
+.spr { position: relative; }
+.spr svg { position: absolute; left: 0; top: 0; }
+.fighter .plate { position: relative; z-index: 3; }
