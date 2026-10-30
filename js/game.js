@@ -410,14 +410,15 @@
     root.replaceChildren();
     const L = LOCATIONS[battle.loc];
     const mkFighter = (side, name, svg, size) => {
-      const spr = h('div', { class: 'spr', svg, style: `--s:${size}` });
+      const facesLeft = side === 'foe' && (battle.mon.id === 'lobo' || battle.mon.id === 'lobo_gelo');
+      const spr = h('div', { class: 'spr' + (facesLeft ? ' flip-fix' : ''), svg, style: `--s:${size}` });
       const plate = h('div', { class: 'plate' }, h('div', { class: 'pname' }, name), h('div', { class: 'bar hp' }, h('i')),
         side === 'player' ? h('div', { class: 'bar mp' }, h('i')) : null, h('div', { class: 'bartext' }));
       const w = h('div', { class: 'fighter ' + side }, plate, spr);
       return { w, spr, plate };
     };
     const p = mkFighter('player', G.name, SPRITES[G.cls], 1);
-    const f = mkFighter('foe', battle.mon.name, SPRITES[battle.mon.id], battle.mon.size);
+    const f = mkFighter('foe', battle.mon.name, SPRITES[battle.mon.id], battle.mon.boss ? Math.min(battle.mon.size, 1.12) : battle.mon.size);
     battle.els = { player: p, foe: f };
     root.append(h('div', { class: 'arena bg-' + L.bg }, p.w, f.w), h('div', { id: 'actions', class: 'actions' }), h('ul', { id: 'log', class: 'log', 'aria-live': 'polite' }));
     updateBars();
