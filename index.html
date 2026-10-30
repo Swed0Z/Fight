@@ -1,69 +1,82 @@
 <!DOCTYPE html>
-<html lang="PT-BR">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Briga de Rua</title>
+    <title>Briga de Rua — Crônicas de Ravenhold</title>
+    <meta name="description" content="RPG medieval de turnos no navegador: escolha sua classe, explore o reino, cumpra missões e derrote o Lorde Sombrio.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=MedievalSharp&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>RPG</h1>
+        <h1>Briga de Rua</h1>
         <ul>
-            <li><a href="" id="beginning">Inicio</a></li>
-            <li><a href="https://github.com/Swed0Z/Fight" target="_blank">Sobre o Jogo</a></li>
-            <li><a href="https://www.linkedin.com/in/felipe-lopes-93b70a2a2/" target="_blank">Contato</a></li>
+            <li><a href="#" id="beginning">Início</a></li>
+            <li><a href="https://github.com/Swed0Z/Fight" target="_blank" rel="noopener">Sobre o Jogo</a></li>
+            <li><a href="#" id="btnMute" role="button" aria-pressed="true">🔊 Som ligado</a></li>
+            <li><a href="https://www.linkedin.com/in/felipe-lopes-93b70a2a2/" target="_blank" rel="noopener">Contato</a></li>
         </ul>
     </header>
-<main>
-    <div class="initial">
-        <h1 class="interfaceh1">RPG</h1>
-        <div class="interface1">
-            <button class="initialButton" id="playButton" onclick="Play()">Jogar</button>
-        </div>
-        <div class="interface2 hidden" >
-            <button class="initialButton" id="Continue" onclick="FightArea()" >Continuar</button>
-            <button class="initialButton" id="newGame" onclick="NewGame();nameHeroArea()">Novo Jogo</button>
-        </div>
-    </div>
-    <div class="nameHeroArea hidden">
-        <h1>Escolha o nome do personagem</h1>
-        <div class="fomrDiv">
-            <form id="formName">
-                <input type="text" name="" id="nameInput">
-                <button type="button" onclick="selectHeroArea(); saveName()">escolher</button>
+
+    <main>
+        <!-- Título -->
+        <section id="title" class="screen active">
+            <div class="hero-title">
+                <p class="kicker">Crônicas de Ravenhold</p>
+                <h2>Briga de Rua</h2>
+                <div id="titleStep1" class="menu-col">
+                    <button class="btn big" id="btnPlay">Jogar</button>
+                </div>
+                <div id="titleStep2" class="menu-col hidden">
+                    <button class="btn big" id="btnContinue">Continuar</button>
+                    <button class="btn big" id="btnNew">Novo Jogo</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Criação de personagem -->
+        <section id="create" class="screen">
+            <form id="createForm" class="create">
+                <h2>Forje seu herói</h2>
+                <label for="nameInput">Nome do personagem</label>
+                <input type="text" id="nameInput" maxlength="16" autocomplete="off" placeholder="Ex.: Aldren">
+                <div id="classCards" class="classCards"></div>
+                <div class="acts">
+                    <button type="button" class="btn" id="btnBack">Voltar</button>
+                    <button type="submit" class="btn gold">Começar aventura</button>
+                </div>
             </form>
-        </div>
-    </div>
-    <div class="selectHero hidden">
-        <div class="hero" onclick="FightArea2(); selectCharacter('Knight')"><img src="https://historiablog.files.wordpress.com/2023/09/templario.jpeg?w=723" alt="" id="Knight"></div>
-        <div class="hero" onclick="FightArea2(); selectCharacter('Mage')"><img src="https://i.pinimg.com/564x/0d/7a/48/0d7a481e419ae052a4dc0ce454f83e24.jpg" alt="" id="Mage"></div>
-        <div class="hero" onclick="FightArea2(); selectCharacter('Archer')"><img src="https://1.bp.blogspot.com/-iK92KqEnF7o/YD_HMhoWq6I/AAAAAAAAKiU/VtcWAxIDvm0eFh_yYsTyg5o5s-RRbqO3QCLcBGAsYHQ/s650/maerel-hibadita-final-aelwyn-alorr-small.jpg" alt="" id="Archer"></div>
-    </div>
-    
-    <div class="FightArea hidden">
-        <div id="Character">
-            <div class="LifeBar">
-                <div class="Bar" style="width: 10%;"></div>
+        </section>
+
+        <!-- Mapa -->
+        <section id="hub" class="screen"></section>
+
+        <!-- Batalha -->
+        <section id="battle" class="screen"></section>
+
+        <!-- Final -->
+        <section id="ending" class="screen">
+            <div class="hero-title">
+                <p class="kicker">Vitória</p>
+                <h2>O reino está salvo</h2>
+                <p id="endText" class="endText"></p>
+                <button class="btn big gold" id="btnKeep">Continuar explorando</button>
             </div>
-            <strong class="name">--</strong>
-            <div><button class="AttackButton">Atacar</button></div>
-        </div>
-        <div id="Monster">
-            <div class="LifeBar">
-                <div class="Bar" style="width: 10%;"></div>
-            </div>
-            <strong class="name">--</strong>
-            <div><button class="AttackButton">Atacar</button></div>
-        </div>
-    </div> 
-    <ul class="Log"></ul>
-</main>
-<footer>
-    <p class="footer">Feito por Felipe Lopes</p>
-</footer>
-<script src="classes.js"></script>
-<script src="script.js"></script>
-<script src="botaoInterface.js"></script>
+        </section>
+    </main>
+
+    <div id="toasts" aria-live="polite"></div>
+
+    <footer>
+        <p class="footer">Feito por Felipe Lopes</p>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/sprites.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/game.js"></script>
 </body>
 </html>
