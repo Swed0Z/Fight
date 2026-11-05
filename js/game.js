@@ -421,6 +421,8 @@
     const f = mkFighter('foe', battle.mon.name, SPRITES[battle.mon.id], battle.mon.boss ? Math.min(battle.mon.size, 1.12) : battle.mon.size);
     battle.els = { player: p, foe: f };
     root.append(h('div', { class: 'arena bg-' + L.bg }, p.w, f.w), h('div', { id: 'actions', class: 'actions' }), h('ul', { id: 'log', class: 'log', 'aria-live': 'polite' }));
+    battle.arena = root.querySelector('.arena');
+    if (window.PixelFX) PixelFX.attach(battle.arena);
     updateBars();
   }
 
@@ -449,7 +451,42 @@
     battle.els[side].w.append(s);
     setTimeout(() => s.remove(), 1100);
   }
+  /* efeitos de pixel art (biblioteca pixelfx) */
+  const PAL = {
+    arcane: ['#2a1450', '#5b2fa8', '#9a63ff', '#d3b0ff', '#ffffff'],
+    gold: ['#4a2f0c', '#a8741f', '#e0b040', '#fff0a0', '#ffffff'],
+    fire: ['#4a1208', '#b03a10', '#f07a1c', '#ffd25a', '#ffffff'],
+    heal: ['#0f3d1c', '#1f8f43', '#57d977', '#b8ffc8', '#ffffff'],
+    mana: ['#102a5a', '#2a62c8', '#5aa8ff', '#b8e0ff', '#ffffff'],
+  };
+  function vfx(name, side, o) {
+    if (!window.PixelFX || !battle || !battle.arena) return;
+    o = Object.assign({}, o);
+    const a = battle.arena.getBoundingClientRect(), r = battle.els[side].spr.getBoundingClientRect();
+    const x = r.left - a.left + r.width / 2 + (o.dx || 0), y = r.top - a.top + r.height * (o.fy == null ? 0.85 : o.fy) + (o.dy || 0);
+    delete o.dx; delete o.dy; delete o.fy;
+    PixelFX.play(name, Object.assign(o, { x, y }));
+  }
+  async function hitFx(skill) {
+    const id = skill ? skill.id : 'basic', cls = G.cls;
+    if (!window.PixelFX) return;
+    if (cls === 'knight') {
+      if (id === 'furia') { vfx('spinSlash', 'foe', { maxT: 0.8 }); vfx('critHit', 'foe', { delay: 0.18, maxT: 0.7 }); }
+      else if (id === 'golpe') { vfx('swordSlash', 'foe', { dx: -25, maxT: 0.6 }); vfx('critHit', 'foe', { delay: 0.12, maxT: 0.6 }); }
+      else { vfx('swordSlash', 'foe', { dx: -25, maxT: 0.6 }); vfx('hitSpark', 'foe', { fy: 0.6, dx: -20, delay: 0.12 }); }
+      return;
+    }
+    if (id !== 'raio') {
+      vfx('magicMissile', 'player', { fy: 0.6, dx: 40, dy: 40, palette: id === 'fogo' || id === 'dragao' ? PAL.fire : cls === 'mage' ? PAL.arcane : PAL.gold, maxT: 0.9 });
+      await sleep(600);
+    }
+    if (id === 'fogo') vfx('smallExplosion', 'foe', { maxT: 0.9 });
+    else if (id === 'raio') vfx('lightningStrike', 'foe', { fy: 0.92, maxT: 1 });
+    else if (id === 'dragao') { vfx('smallExplosion', 'foe', { maxT: 0.9 }); vfx('critHit', 'foe', { delay: 0.1, maxT: 0.6 }); }
+    else vfx('hitSpark', 'foe', { fy: 0.6, dx: -10 });
+  }
   function fx(side, glyph) {
+    if (window.PixelFX) return;
     const s = h('span', { class: 'fxglyph' }, glyph);
     battle.els[side].w.append(s);
     setTimeout(() => s.remove(), 700);
@@ -505,6 +542,7 @@
     if (melee) await anim(battle.els.player.spr, 'lunge-r', 380); else await anim(battle.els.player.spr, 'cast', 260);
     for (let i = 0; i < hits; i++) {
       if (skill) fx('foe', skill.fx); else fx('foe', G.cls === 'archer' ? '🏹' : G.cls === 'mage' ? '✨' : '💢');
+      await hitFx(skill);
       if (Math.random() < 0.06 && !skill) {
         sfx('miss'); floatText('foe', 'Esquivou!', 'miss'); log(`${battle.mon.name} esquivou do ataque!`);
         continue;
@@ -512,6 +550,7 @@
       const r = calc(atk(), battle.mon.def, { mult: skill ? skill.mult : 1, magic, crit: skill && skill.crit ? skill.crit : c.crit });
       battle.mon.hp -= r.dmg;
       sfx(magic ? 'magic' : r.crit ? 'crit' : 'hit');
+      if (r.crit && !(skill && (skill.id === 'golpe' || skill.id === 'furia' || skill.id === 'dragao'))) vfx('critHit', 'foe', { maxT: 0.7 });
       floatText('foe', (r.crit ? '💥 ' : '') + r.dmg, r.crit ? 'crit' : 'dmg');
       log(`${G.name} ${skill ? 'usa ' + skill.name + ' e' : ''} causa ${r.dmg} de dano${r.crit ? ' (CRÍTICO!)' : ''}.`, r.crit ? 'crit' : '');
       updateBars();
@@ -524,7 +563,7 @@
     if (skill.type === 'heal') {
       const amt = Math.round(maxHp() * skill.pct);
       G.hp = Math.min(maxHp(), G.hp + amt);
-      sfx('heal'); fx('player', skill.fx); floatText('player', '+' + amt, 'heal');
+      sfx('heal'); fx('player', skill.fx); vfx('collectBurst', 'player', { palette: PAL.heal, maxT: 1.1 }); floatText('player', '+' + amt, 'heal');
       log(`${G.name} usa ${skill.name} e recupera ${amt} HP.`, 'heal');
       await anim(battle.els.player.spr, 'cast', 400);
       return true;
@@ -535,6 +574,7 @@
   }
   async function playerDefend() {
     battle.defending = true;
+    vfx('shieldBlock', 'player', { dx: -10, maxT: 0.9 });
     G.mp = Math.min(maxMp(), G.mp + 4);
     log(`${G.name} se protege e recupera o fôlego (+4 MP).`, 'sys');
     await anim(battle.els.player.spr, 'guard', 350);
@@ -546,6 +586,7 @@
     if (it.mana) { const a = Math.min(it.mana, maxMp() - G.mp); G.mp += a; floatText('player', '+' + a + ' MP', 'mana'); log(`${G.name} bebe ${it.name} (+${a} MP).`, 'heal'); }
     sfx('heal');
     fx('player', '✨');
+    vfx('collectBurst', 'player', { palette: it.mana ? PAL.mana : PAL.heal, maxT: 1.1 });
     await anim(battle.els.player.spr, 'cast', 350);
   }
   async function playerFlee() {
@@ -575,6 +616,7 @@
       G.hp = Math.max(0, G.hp - d);
       sfx(heavy ? 'crit' : 'hurt');
       fx('player', heavy ? '🔥' : '💢');
+      if (heavy) vfx('groundSlam', 'player', { fy: 0.92, maxT: 0.9 }); else vfx('clawSwipe', 'player', { dx: 25, flip: true, maxT: 0.8 });
       floatText('player', String(d), 'dmg');
       log(`${m.name} ${heavy ? 'usa ' + m.heavyName + ' e ' : ''}causa ${d} de dano${battle.defending ? ' (defendido)' : ''}.`, heavy ? 'crit' : '');
       updateBars();
@@ -589,6 +631,7 @@
     battle.over = true;
     const m = battle.mon;
     battle.els.foe.spr.classList.add('dead');
+    vfx('poof', 'foe', { fy: 0.7, maxT: 1.2 });
     sfx('win');
     log(`${m.name} foi derrotado!`, 'sys');
     await sleep(700);
