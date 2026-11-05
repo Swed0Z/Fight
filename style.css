@@ -356,3 +356,6 @@ footer { text-align: center; padding: 14px; font-size: .8rem; color: var(--parch
 .spr { position: relative; }
 .spr svg { position: absolute; left: 0; top: 0; }
 .fighter .plate { position: relative; z-index: 3; }
+
+/* efeitos pixelfx */
+.pfx-layer { position: absolute; left: 0; top: 0; z-index: 6; pointer-events: none; image-rendering: pixelated; }

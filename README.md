@@ -27,5 +27,9 @@ style.css
 js/data.js     classes, itens, monstros, locais e missões
 js/sprites.js  desenhos em SVG
 js/audio.js    efeitos sonoros sintetizados (Web Audio)
+js/pixelfx.js  efeitos visuais de combate (usa a biblioteca pixelfx)
 js/game.js     estado, mapa, combate, loja, missões e save
 ```
+
+## Créditos
+Os efeitos visuais de combate usam a biblioteca [pixelfx](https://github.com/patch-gg/pixelfx), de Patch e Hugo Duprez, licença MIT.
