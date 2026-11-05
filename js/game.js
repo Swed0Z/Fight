@@ -410,12 +410,14 @@
     root.replaceChildren();
     const L = LOCATIONS[battle.loc];
     const mkFighter = (side, name, svg, size) => {
-      const facesLeft = side === 'foe' && (battle.mon.id === 'lobo' || battle.mon.id === 'lobo_gelo');
-      const spr = h('div', { class: 'spr' + (facesLeft ? ' flip-fix' : ''), svg, style: `--s:${size}` });
+      const fid = side === 'foe' ? battle.mon.id : G.cls;
+      const rc = RPG.rig && RPG.rig.CFG[fid];
+      const facesLeft = side === 'foe' && !!(rc && rc.flip);
+      const spr = h('div', { class: 'spr' + (facesLeft ? ' flip-fix' : ''), svg: (RPG.rig && RPG.rig.make(fid)) || svg, style: `--s:${size}` });
       const plate = h('div', { class: 'plate' }, h('div', { class: 'pname' }, name), h('div', { class: 'bar hp' }, h('i')),
         side === 'player' ? h('div', { class: 'bar mp' }, h('i')) : null, h('div', { class: 'bartext' }));
       const w = h('div', { class: 'fighter ' + side }, plate, spr);
-      return { w, spr, plate };
+      return { w, spr, plate, rig: RPG.rig ? RPG.rig.control(spr, fid) : null };
     };
     const p = mkFighter('player', G.name, SPRITES[G.cls], 1);
     const f = mkFighter('foe', battle.mon.name, SPRITES[battle.mon.id], battle.mon.boss ? Math.min(battle.mon.size, 1.12) : battle.mon.size);
@@ -445,6 +447,14 @@
     ul.scrollTop = ul.scrollHeight;
   }
 
+  // ataque articulado: resolve no instante do contato
+  function strike(side, o) {
+    const e = battle.els[side], t = battle.els[side === 'player' ? 'foe' : 'player'];
+    if (!e.rig || matchMedia('(prefers-reduced-motion: reduce)').matches) return anim(e.spr, side === 'player' ? 'lunge-r' : 'lunge-l', 380);
+    const a = e.spr.getBoundingClientRect(), b = t.spr.getBoundingClientRect(), sx = side === 'player' ? 1 : -1;
+    const gap = Math.abs((b.left + b.width / 2) - (a.left + a.width / 2)) - (a.width + b.width) * 0.5 * 0.74;
+    return e.rig.attack(Object.assign({ dx: sx * Math.max(30, gap), sx }, o));
+  }
   function anim(node, cls, ms) { node.classList.add(cls); return sleep(ms).then(() => node.classList.remove(cls)); }
   function floatText(side, text, cls) {
     const s = h('span', { class: 'float ' + cls }, text);
@@ -539,7 +549,8 @@
     const magic = !!(skill && skill.magic);
     const hits = (skill && skill.hits) || 1;
     const melee = G.cls === 'knight' && !magic;
-    if (melee) await anim(battle.els.player.spr, 'lunge-r', 380); else await anim(battle.els.player.spr, 'cast', 260);
+    if (battle.els.player.rig) await strike('player', skill && skill.id === 'furia' ? { speed: 1.15 } : {});
+    else if (melee) await anim(battle.els.player.spr, 'lunge-r', 380); else await anim(battle.els.player.spr, 'cast', 260);
     for (let i = 0; i < hits; i++) {
       if (skill) fx('foe', skill.fx); else fx('foe', G.cls === 'archer' ? '🏹' : G.cls === 'mage' ? '✨' : '💢');
       await hitFx(skill);
@@ -606,7 +617,7 @@
     const m = battle.mon;
     battle.turn++;
     const heavy = m.heavyEvery && battle.turn % m.heavyEvery === 0;
-    await anim(battle.els.foe.spr, 'lunge-l', 380);
+    await strike('foe', heavy ? { speed: 0.85 } : {});
     if (!heavy && Math.random() < 0.08) {
       sfx('miss'); floatText('player', 'Esquivou!', 'miss'); log(`${G.name} esquivou do ataque de ${m.name}!`);
     } else {
