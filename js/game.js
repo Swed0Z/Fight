@@ -456,6 +456,20 @@
     const gap = Math.abs((b.left + b.width / 2) - (a.left + a.width / 2)) - (a.width + b.width) * 0.5 * 0.74;
     return e.rig.attack(Object.assign({ dx: sx * Math.max(30, gap), sx }, o));
   }
+  // impacto: pausa no golpe, flash, tremor de tela e empurrão (pow 1 a 3)
+  async function impact(side, pow) {
+    const e = battle.els[side], o = battle.els[side === 'foe' ? 'player' : 'foe'];
+    if (!e || !e.rig || !e.rig.px || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const ms = [0, 55, 100, 140][pow];
+    if (o.rig && o.rig.freeze) o.rig.freeze(ms);
+    if (e.rig.freeze) e.rig.freeze(ms);
+    if (e.rig.flash) e.rig.flash(ms + 40);
+    const root = $('#battle');
+    if (root) { root.classList.remove('sh1', 'sh2', 'sh3'); void root.offsetWidth; root.classList.add('sh' + pow); setTimeout(() => root.classList.remove('sh' + pow), 450); }
+    await sleep(ms);
+    const dir = side === 'foe' ? 1 : -1;
+    e.spr.animate([{ translate: '0 0' }, { translate: `${dir * (8 + pow * 8)}px 0`, offset: 0.25 }, { translate: '0 0' }], { duration: 280 + pow * 70, easing: 'ease-out', composite: 'add' });
+  }
   function anim(node, cls, ms) { node.classList.add(cls); return sleep(ms).then(() => node.classList.remove(cls)); }
   function floatText(side, text, cls) {
     const s = h('span', { class: 'float ' + cls }, text);
@@ -566,6 +580,7 @@
       floatText('foe', (r.crit ? '💥 ' : '') + r.dmg, r.crit ? 'crit' : 'dmg');
       log(`${G.name} ${skill ? 'usa ' + skill.name + ' e' : ''} causa ${r.dmg} de dano${r.crit ? ' (CRÍTICO!)' : ''}.`, r.crit ? 'crit' : '');
       updateBars();
+      await impact('foe', r.crit ? 3 : (skill && skill.mult > 1.4) ? 2 : 1);
       await anim(battle.els.foe.spr, 'hit', 260);
       if (battle.mon.hp <= 0) break;
     }
@@ -632,6 +647,7 @@
       floatText('player', String(d), 'dmg');
       log(`${m.name} ${heavy ? 'usa ' + m.heavyName + ' e ' : ''}causa ${d} de dano${battle.defending ? ' (defendido)' : ''}.`, heavy ? 'crit' : '');
       updateBars();
+      await impact('player', heavy ? 3 : r.crit ? 2 : 1);
       await anim(battle.els.player.spr, 'hit', 260);
     }
     battle.defending = false;
