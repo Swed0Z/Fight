@@ -359,3 +359,6 @@ footer { text-align: center; padding: 14px; font-size: .8rem; color: var(--parch
 
 /* efeitos pixelfx */
 .pfx-layer { position: absolute; left: 0; top: 0; z-index: 6; pointer-events: none; image-rendering: pixelated; }
+
+/* personagens em pixel art */
+.spr canvas.pxs { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); image-rendering: pixelated; display: block; }
