@@ -362,3 +362,16 @@ footer { text-align: center; padding: 14px; font-size: .8rem; color: var(--parch
 
 /* personagens em pixel art */
 .spr canvas.pxs { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); image-rendering: pixelated; display: block; }
+
+/* impacto estilo Castlevania */
+.spr canvas.pxs.flash { filter: brightness(9) saturate(0); }
+.spr canvas.pxs.flash2 { filter: sepia(1) saturate(7) hue-rotate(-35deg) brightness(1.25); }
+.spr:has(canvas.pxs).hit { animation: bob 2.2s ease-in-out infinite; filter: drop-shadow(0 4px 4px rgba(0, 0, 0, .45)); }
+.spr:has(canvas.pxs).dead { animation: none; filter: drop-shadow(0 4px 4px rgba(0, 0, 0, .45)); }
+#battle.sh1 { animation: shk1 .22s steps(2, end); }
+#battle.sh2 { animation: shk2 .3s steps(2, end); }
+#battle.sh3 { animation: shk3 .42s steps(2, end); }
+@keyframes shk1 { 0% { translate: 3px 0; } 33% { translate: -3px 1px; } 66% { translate: 2px -1px; } 100% { translate: 0 0; } }
+@keyframes shk2 { 0% { translate: 6px 2px; } 25% { translate: -6px -2px; } 50% { translate: 4px 2px; } 75% { translate: -3px 0; } 100% { translate: 0 0; } }
+@keyframes shk3 { 0% { translate: 9px 4px; } 20% { translate: -9px -4px; } 40% { translate: 7px 3px; } 60% { translate: -5px -2px; } 80% { translate: 3px 1px; } 100% { translate: 0 0; } }
+@media (prefers-reduced-motion: reduce) { #battle.sh1, #battle.sh2, #battle.sh3 { animation: none; } }

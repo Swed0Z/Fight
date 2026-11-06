@@ -17,7 +17,7 @@ Abra `index.html` no navegador ou publique no GitHub Pages.
 - Níveis até 20, loja de armas, armaduras e poções
 - 10 missões encadeadas, com diário
 - Salvamento automático no navegador (`localStorage`)
-- Personagens e monstros em pixel art animada (parado, ataque, dano e morte), com retratos e mapas em SVG
+- Personagens e monstros em pixel art animada (parado, ataque, dano e morte), com capa ao vento, pausa no golpe e tremor de tela; retratos e mapas em SVG
 - Efeitos sonoros gerados por código, com botão para silenciar
 
 ## Estrutura
@@ -26,7 +26,8 @@ index.html
 style.css
 js/data.js     classes, itens, monstros, locais e missões
 js/sprites.js  desenhos em SVG (retratos e mapa)
-js/pxldata.js  quadros de pixel art dos personagens (gerados com a ferramenta pxl)
+js/pxldata.js  quadros de pixel art dos monstros (gerados com a ferramenta pxl)
+js/pxlheroes.js quadros de pixel art dos heróis
 js/pxlsprite.js animação dos personagens em pixel art
 js/rig.js      articulação dos desenhos em SVG (reserva)
 js/audio.js    efeitos sonoros sintetizados (Web Audio)
