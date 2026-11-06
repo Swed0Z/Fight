@@ -411,13 +411,14 @@
     const L = LOCATIONS[battle.loc];
     const mkFighter = (side, name, svg, size) => {
       const fid = side === 'foe' ? battle.mon.id : G.cls;
+      const px = !!(RPG.pxl && RPG.pxl.has(fid));
       const rc = RPG.rig && RPG.rig.CFG[fid];
-      const facesLeft = side === 'foe' && !!(rc && rc.flip);
-      const spr = h('div', { class: 'spr' + (facesLeft ? ' flip-fix' : ''), svg: (RPG.rig && RPG.rig.make(fid)) || svg, style: `--s:${size}` });
+      const facesLeft = !px && side === 'foe' && !!(rc && rc.flip);
+      const spr = h('div', { class: 'spr' + (facesLeft ? ' flip-fix' : ''), svg: px ? '' : ((RPG.rig && RPG.rig.make(fid)) || svg), style: `--s:${size}` });
       const plate = h('div', { class: 'plate' }, h('div', { class: 'pname' }, name), h('div', { class: 'bar hp' }, h('i')),
         side === 'player' ? h('div', { class: 'bar mp' }, h('i')) : null, h('div', { class: 'bartext' }));
       const w = h('div', { class: 'fighter ' + side }, plate, spr);
-      return { w, spr, plate, rig: RPG.rig ? RPG.rig.control(spr, fid) : null };
+      return { w, spr, plate, rig: px ? RPG.pxl.control(spr, fid) : (RPG.rig ? RPG.rig.control(spr, fid) : null) };
     };
     const p = mkFighter('player', G.name, SPRITES[G.cls], 1);
     const f = mkFighter('foe', battle.mon.name, SPRITES[battle.mon.id], battle.mon.boss ? Math.min(battle.mon.size, 1.12) : battle.mon.size);
